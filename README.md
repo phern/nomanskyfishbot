@@ -6,36 +6,36 @@
 
   NMS does not like the way PyAutoGUI does keypresses so used PyDirectInput to work with directx
 
-# Usage
+## Usage
 
-  Find a spot to fish a bit above the water to avoid storms moving you.
+  * Find a spot to fish a bit above the water to avoid storms moving you.
 
-  Set NMS to windowed 1080p mode
+  * Set NMS to windowed 1080p mode
 
-  Keep window at top left of screen on main monitor
+  * Keep window at top left of screen on main monitor
 
-  Equip fishing rig and make sure the indicator is clearly visible
+  * Equip fishing rig and make sure the indicator is clearly visible
 
-  Run the bot and refocus NMS window
+  * Run the bot and refocus NMS window
 
-  Profit
+  * Profit
 
-# Tips
+## Tips
 
-  The script will run even if NMS is not running.
+###  **The script will run even if NMS is not running. Make sure to exit the script when done.**
 
   Some planets have wacky color filters. If that is the case, and the bot is not working,
   you can adjust tolerances for color selection within the script. 
 
-  NMS must be on main monitor to function. 
+  NMS must be on main monitor for the bot to function. 
 
   
 
-# Stuff I Used
+## Stuff I Used
 
-https://pypi.org/project/PyAutoGUI/
+* https://pypi.org/project/PyAutoGUI/
 
-https://pypi.org/project/PyDirectInput/
+* https://pypi.org/project/PyDirectInput/
 
 
 
