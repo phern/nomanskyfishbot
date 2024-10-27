@@ -6,11 +6,11 @@ import time
 DELAY = 1.00
 
 #These constants represent the X and Y coordinates where we
-#will begin our search for on screen items.
+# will begin our search for UI colors.
 #Resolution is assumed to be 1080p
 
 
-#
+#ton of constants, not sure how to make this pretty yet lol
 INDICATOR_X = 927
 INDICATOR_Y = 549
 INDICATOR_WIDTH = 100
@@ -38,12 +38,7 @@ def main():
 
     countdownTimer(10)
 
-    #reportMousePosition()
-    ##checkFishingIndicator()
-    ##startFishing()
     fishingLoop()
-
-
 
     print("Done")
 
@@ -62,14 +57,14 @@ def countdownTimer(seconds):
     print("Started")
 
 
-#prints coordinates
+#prints coordinates of mouse
 def reportMousePosition(seconds=10):
     for i in range(0, seconds):
      print(pyautogui.position())
      time.sleep(DELAY)
 
 
-#holds down key for duration in seconds with a delay after
+#holds down mouse
 def useMouseButton(seconds=0.10):
     pydirectinput.mouseDown()
     time.sleep(seconds)
@@ -77,9 +72,8 @@ def useMouseButton(seconds=0.10):
     time.sleep(DELAY)
 
 
-##def stopFishing():
+
 def searchScreenAreaForColor(x, y, width, height, color_to_find, tolerance):
-    ##color_to_find = (255, 0, 0)
     region = (x, y, width, height)  # Define the region of interest
     screenshot = pyautogui.screenshot(region=region)
 
@@ -93,7 +87,7 @@ def searchScreenAreaForColor(x, y, width, height, color_to_find, tolerance):
                 continue
 
 
-#checks the color of the screen where the fishing indicator is expected to appear
+#checks if fishing indicator is currently displayed
 def checkFishingIndicator():
     print("Now checking fishing indicator.")
     if searchScreenAreaForColor(INDICATOR_X, INDICATOR_Y, INDICATOR_WIDTH, INDICATOR_HEIGHT, INDICATOR_COLOR, 25):
@@ -103,35 +97,19 @@ def checkFishingIndicator():
         print("Fishing indicator color not found.")
         return False
 
-
-#checks the color of the screen for the popup box that only appears after catching a fish
-#if the fish is caught, calls the entire sequence
+#checks if the summary box that appears after a fish is caught is displayed
 def checkFishBox():
     if searchScreenAreaForColor(CATCHUI_X, CATCHUI_Y, CATCHUI_WIDTH, CATCHUI_HEIGHT, CATCHUI_COLOR, 10):
         return True
     else:
         print("Could not determine if fish box is active.")
 
-
+#not great naming
 def catchFish():
         useMouseButton()
         print("Fish caught!")
         print("Continuing.")
         time.sleep(3.00)
-
-
-def startFishing():
-    if checkFishingIndicator():
-        useMouseButton()
-        if checkFishBox():
-            catchFish()
-            startFishing()
-        else:
-            checkFishBox()
-            print("Problem catching the fish")
-    else:
-        print("Unexpected Fishing error.")
-        exit()
 
 
 def fishingLoop():
