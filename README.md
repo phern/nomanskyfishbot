@@ -13,6 +13,8 @@
   * Find a spot to fish a bit above the water to avoid storms moving you.
 
   * Set NMS to windowed 1080p mode
+    
+  * Change difficulty setting for fishing to Auto
 
   * Keep window at top left of screen on main monitor
 
