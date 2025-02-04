@@ -1,6 +1,7 @@
 import pyautogui
 import pydirectinput
 import time
+import subprocess
 
 from classes import Indicator, CatchUI
 
@@ -15,6 +16,7 @@ def main():
 
     try:
         initializePyAutoGUI()
+        moveWindowToTopLeft()
         countdownTimer(10)
         fishingLoop()
         print("Done")
@@ -27,6 +29,28 @@ def main():
 def initializePyAutoGUI():
     pyautogui.FAILSAFE = True
 
+# Function to move the window to the top left corner using wmctrl
+def moveWindowToTopLeft():
+    try:
+        subprocess.run(["wmctrl", "-r", ":ACTIVE:", "-e", "0,0,0,-1,-1"])
+        print("Window moved to top left corner.")
+    except Exception as e:
+        print(f"Failed to move window: {str(e)}")
+
+# Function to check if the window is in the top left corner
+def isWindowInTopLeft():
+    try:
+        output = subprocess.check_output(["wmctrl", "-lG"]).decode("utf-8")
+        for line in output.splitlines():
+            if ":ACTIVE:" in line:
+                parts = line.split()
+                x, y = int(parts[2]), int(parts[3])
+                if x == 0 and y == 0:
+                    return True
+        return False
+    except Exception as e:
+        print(f"Failed to check window position: {str(e)}")
+        return False
 
 #countdown timer 
 def countdownTimer(seconds): 
@@ -98,6 +122,8 @@ def catchFish():
 def fishingLoop():
     bot_state = True
     while bot_state == True:
+        if not isWindowInTopLeft():
+            moveWindowToTopLeft()
         if checkFishBox():
             catchFish()
             continue

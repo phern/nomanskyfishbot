@@ -16,8 +16,6 @@
     
   * Change difficulty setting for fishing to Auto
 
-  * Keep window at top left of screen on main monitor
-
   * Equip fishing rig and make sure the indicator is clearly visible
 
   * Run the bot and refocus NMS window
@@ -34,6 +32,7 @@
 
   NMS must be on main monitor for the bot to function. 
 
+  The bot will automatically move the window to the top left corner of the screen.
 
 ## Disclaimer
 
@@ -47,7 +46,4 @@
 * https://pypi.org/project/PyAutoGUI/
 
 * https://pypi.org/project/PyDirectInput/
-
-
-
 
