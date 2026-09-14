@@ -22,8 +22,12 @@ def main():
     print("Done")
 
 
-# move the game window to top left
 
+def windowStatus():
+    nms_window = pwc.getWindowsWithTitle("No Man's Sky")
+    return bool(nms_window)
+
+# wait for the target window
 def waitForWindow():
     timeout = 0
     nms_window = None
@@ -42,7 +46,8 @@ def waitForWindow():
             print("No Man's Sky found.")
             nms_window = windows[0]
             moveWindow(nms_window)
-    
+   
+# move target window 
 def moveWindow(window):
     window.activate()
     window.moveTo(0 ,0)
@@ -124,6 +129,10 @@ def catchFish():
 def fishingLoop():
     bot_state = True
     while bot_state == True:
+        if not windowStatus():
+            bot_state = False
+            print("Fishing loop has ended.")
+            sys.exit()
         if checkFishBox():
             catchFish()
             continue
@@ -138,10 +147,6 @@ def fishingLoop():
         else:
             print("Indicator not detected.")
             continue
-    else:
-        bot_state = False
-        print("Fishing loop has ended.")
-        sys.exit()
 
 
 if __name__ == "__main__":
