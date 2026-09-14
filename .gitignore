@@ -1,0 +1,28 @@
+# Virtual environment
+.venv/
+
+# Python cache / compiled files
+__pycache__/
+*.py[cod]
+
+# Tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment/secrets
+.env
+.env.*
+
+# Coverage output
+.coverage
+htmlcov/
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor-specific local files
+.vscode/
+.idea/
