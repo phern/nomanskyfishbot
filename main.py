@@ -1,6 +1,8 @@
 import pyautogui
 import pydirectinput
 import time
+import pywintctl as pwc
+import sys
 
 from classes import Indicator, CatchUI
 
@@ -13,22 +15,45 @@ DELAY = 1.00
 
 def main():
 
-    try:
-        initializePyAutoGUI()
-        countdownTimer(10)
-        fishingLoop()
-        print("Done")
-    except Exception as e:
-        print(f"An error occured: {str(e)}")
-    finally:
-        print("L")
+    waitForWindow()
+    initPyAutoGUI()
+    countdownTimer(10)
+    fishingLoop()
+    print("Done")
 
-#initializing pyautogui and enabling the failsafe
-def initializePyAutoGUI():
+
+# move the game window to top left
+
+def waitForWindow():
+    timeout = 0
+    nms_window = None
+    print("Waiting for game window...")
+    while not nms_window:
+        
+        timeout += 1
+        if timeout == 1000:
+            print("Game window not found. Exiting...")
+            sys.exit()
+            
+        time.sleep(0.2)
+        
+        windows = pwc.getWindowsWithTitle("No Man's Sky")
+        if windows:
+            print("No Man's Sky found.")
+            nms_window = windows[0]
+            moveWindow(nms_window)
+    
+def moveWindow(window):
+    window.moveTo(0 ,0)
+
+
+
+# init pyautogui and enable the failsafe
+def initPyAutoGUI():
     pyautogui.FAILSAFE = True
 
 
-#countdown timer 
+# countdown timer 
 def countdownTimer(seconds): 
     print("Starting", end="")
     for i in range(0, seconds):
@@ -115,7 +140,7 @@ def fishingLoop():
     else:
         bot_state = False
         print("Fishing loop has ended.")
-        exit()
+        sys.exit()
 
 
 if __name__ == "__main__":
