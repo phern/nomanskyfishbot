@@ -3,7 +3,9 @@ name = "nomanskyfishbot"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "pillow>=12.3.0",
     "pyautogui>=0.9.54",
     "pydirectinput>=1.0.4",
+    "pyscreeze>=1.0.1",
     "pywinctl>=0.4.1",
 ]

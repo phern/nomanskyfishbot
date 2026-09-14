@@ -1,3 +1,7 @@
+# No longer functional after game update
+
+  Hello World added the ability to auto fish in the settings menu. This project no longer works on the current version of No Man's Sky.
+
 # No Man's Sky Fishing Bot 
 
   Incomplete fishing bot for the game No Man's Sky. 
@@ -5,7 +9,7 @@
   Messing around with PyAutoGUI. Made it for fun since I am
   pretty sure you can make this with an autoclicker and 0 code.
 
-  NMS does not like the way PyAutoGUI does keypresses so used PyDirectInput to work with directx
+  NMS does not like the way PyAutoGUI does keypresses so I instead used PyDirectInput to work with directx
 
 
 ## Usage
@@ -48,6 +52,9 @@
 
 * https://pypi.org/project/PyDirectInput/
 
+* https://pypi.org/project/PyWinCtl/
+
+* https://pypi.org/project/pillow/
 
 
 

@@ -1,7 +1,7 @@
 import pyautogui
 import pydirectinput
 import time
-import pywintctl as pwc
+import pywinctl as pwc
 import sys
 
 from classes import Indicator, CatchUI
@@ -44,6 +44,7 @@ def waitForWindow():
             moveWindow(nms_window)
     
 def moveWindow(window):
+    window.activate()
     window.moveTo(0 ,0)
 
 
@@ -78,21 +79,21 @@ def useMouseButton(seconds=0.10):
 
 
 
-def searchScreenAreaForColor(x, y, width, height, color_to_find, tolerance):
+def searchScreenAreaForColor(x, y, width, height, color_to_find):
     region = (x, y, width, height)  # Define the region of interest
     screenshot = pyautogui.screenshot(region=region)
 
     #iterates over each pixel in region and checks for color_to_find
     try:
-        for x in range(screenshot.width):
-            for y in range(screenshot.height):
-                if pyautogui.pixelMatchesColor(x + region[0], y + region[1], color_to_find, tolerance):
-                    print("Pixel found at:", x + region[0], y + region[1])
+        for row in range(screenshot.width):
+            for col in range(screenshot.height):
+                pixel_rgb = screenshot.getpixel(row, col)
+                if pixel_rgb == color_to_find:
+                    print("Pixel found")
                     return True
-                else:
-                    continue
-    except:
-        print("oops")
+    except ValueError:
+        print("ValueError exception caught while searching for pixel color")
+        return False
 
 
 #checks if fishing indicator is currently displayed
