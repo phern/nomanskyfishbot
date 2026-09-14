@@ -1,6 +1,6 @@
 # No longer functional after game update
 
-  Hello World added the ability to auto fish in the settings menu. This project no longer works on the current version of No Man's Sky.
+  Hello Games added the ability to auto fish in the settings menu. This project no longer works on the current version of No Man's Sky.
 
 # No Man's Sky Fishing Bot 
 
