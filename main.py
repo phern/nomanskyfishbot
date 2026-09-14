@@ -95,7 +95,7 @@ def searchScreenAreaForColor(x, y, width, height, color_to_find):
 # checks if fishing indicator is currently displayed
 def checkFishingIndicator():
     print("Now checking fishing indicator.")
-    if searchScreenAreaForColor(Indicator.X, Indicator.Y, Indicator.WIDTH, Indicator.HEIGHT, Indicator.COLOR, 25):
+    if searchScreenAreaForColor(Indicator.X, Indicator.Y, Indicator.WIDTH, Indicator.HEIGHT, Indicator.COLOR):
         print("Fishing indicator is active.")
         return True
     else:
@@ -105,7 +105,7 @@ def checkFishingIndicator():
 
 # checks if the summary box that appears after a fish is caught is displayed
 def checkFishBox():
-    if searchScreenAreaForColor(CatchUI.X, CatchUI.Y, CatchUI.WIDTH, CatchUI.HEIGHT, CatchUI.COLOR, 10):
+    if searchScreenAreaForColor(CatchUI.X, CatchUI.Y, CatchUI.WIDTH, CatchUI.HEIGHT, CatchUI.COLOR):
         return True
     else:
         print("Could not determine if fish box is active.")
