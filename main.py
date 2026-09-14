@@ -60,14 +60,14 @@ def countdownTimer(seconds):
     print("Started")
 
 
-#prints coordinates of mouse
+# prints coordinates of mouse
 def reportMousePosition(seconds=10):
     for i in range(0, seconds):
      print(pyautogui.position())
      time.sleep(DELAY)
 
 
-#holds down mouse
+# holds down mouse
 def useMouseButton(seconds=0.10):
     pydirectinput.mouseDown()
     time.sleep(seconds)
