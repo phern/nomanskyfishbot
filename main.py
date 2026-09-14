@@ -1,28 +1,21 @@
 import pyautogui
 import pydirectinput
-import time
 import pywinctl as pwc
+import time
 import sys
 
 from classes import Indicator, CatchUI
 
 DELAY = 1.00
 
-#These constants represent the X and Y coordinates where we
-# will begin our search for UI colors.
-#Resolution is assumed to be 1080p
-
-
 def main():
-
     waitForWindow()
     initPyAutoGUI()
     countdownTimer(10)
     fishingLoop()
     print("Done")
 
-
-
+# get status of game window
 def windowStatus():
     nms_window = pwc.getWindowsWithTitle("No Man's Sky")
     return bool(nms_window)
@@ -51,7 +44,6 @@ def waitForWindow():
 def moveWindow(window):
     window.activate()
     window.moveTo(0 ,0)
-
 
 
 # init pyautogui and enable the failsafe
@@ -83,12 +75,11 @@ def useMouseButton(seconds=0.10):
     time.sleep(DELAY)
 
 
-
+# takes screenshot of a region of the game and
+# iterate over pixels and check for color_to_find
 def searchScreenAreaForColor(x, y, width, height, color_to_find):
     region = (x, y, width, height)  # Define the region of interest
     screenshot = pyautogui.screenshot(region=region)
-
-    #iterates over each pixel in region and checks for color_to_find
     try:
         for row in range(screenshot.width):
             for col in range(screenshot.height):
@@ -101,7 +92,7 @@ def searchScreenAreaForColor(x, y, width, height, color_to_find):
         return False
 
 
-#checks if fishing indicator is currently displayed
+# checks if fishing indicator is currently displayed
 def checkFishingIndicator():
     print("Now checking fishing indicator.")
     if searchScreenAreaForColor(Indicator.X, Indicator.Y, Indicator.WIDTH, Indicator.HEIGHT, Indicator.COLOR, 25):
@@ -111,14 +102,16 @@ def checkFishingIndicator():
         print("Fishing indicator color not found.")
         return False
 
-#checks if the summary box that appears after a fish is caught is displayed
+
+# checks if the summary box that appears after a fish is caught is displayed
 def checkFishBox():
     if searchScreenAreaForColor(CatchUI.X, CatchUI.Y, CatchUI.WIDTH, CatchUI.HEIGHT, CatchUI.COLOR, 10):
         return True
     else:
         print("Could not determine if fish box is active.")
 
-#not great naming
+
+# mouse input for the game
 def catchFish():
         useMouseButton()
         print("Fish caught!")
@@ -126,6 +119,7 @@ def catchFish():
         time.sleep(3.00)
 
 
+# check for existing game window, call pixel search functions, call input functions, loop
 def fishingLoop():
     bot_state = True
     while bot_state == True:
